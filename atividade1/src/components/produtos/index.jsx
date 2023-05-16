@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import api from '../../services/api'
 import './produtos.css'
 
+
 function Produtos() {
 
      const [products, setProducts] = useState([])
@@ -12,6 +13,7 @@ function Produtos() {
 
                const data = response.data.products;
                setProducts(data)
+               console.log(data)
           } catch (error) {
                console.log(error)
           }
@@ -27,13 +29,15 @@ function Produtos() {
   return (
      <div className='container'>
      <div className="cards">
-          {products.map((product) => (
-               <div className="product" key={product.id}>
-                    <img src={product.image} alt="" />
-                    <p>{product.title} </p>
-                    <p>{product.description}</p>
-                    <h2>{product.price}</h2>
-               </div>
+      {products.map((product) => (
+              <div className="product" key={product.id}>
+              <img src={product.thumbnail} alt="produto_img" />
+              <div className="products_info">
+                   <p>{product.title}</p>
+                   <p>{product.brand}</p>
+                   <h1>{product.price}</h1>
+              </div>
+             </div>
           ))}
      </div>    
 </div>
